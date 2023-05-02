@@ -1,9 +1,11 @@
+require("dotenv").config() //acesso ao arquivo .env
+
 const express = require("express")
 const path = require("path")
 const cors = require("cors")
 
 
-const port = 5000
+const port = process.env.PORT
 
 const app = express()
 
