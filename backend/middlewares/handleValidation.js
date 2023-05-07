@@ -16,4 +16,4 @@ const validate = (req, res, next) => {
     })//retorna um array de objeto com as mensagens dos erros
 }
 
-module.exports = validade
+module.exports = validate
