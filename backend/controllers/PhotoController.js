@@ -60,9 +60,17 @@ const deletePhoto = async(req, res) => {
 
 //get all photos
 const getAllPhotos = async(req, res) => {
-    const photos = await Photo.find({}).sort([["createdAt", -1]]).exec() 
+    const photos = await Photo.find({}).sort([['createdAt', -1]]).exec() 
     //.find({}) procura por todos os documentos na coleção "Photo" sem aplicar nenhum filtro 
     //.sort([["createdAt", -1]]) os documentos recuperados são classificados com base no campo "createdAt" em ordem decrescente.
+
+    return res.status(200).json(photos)
+}
+
+//get user photos
+const getUserPhotos = async(req, res) => {
+    const {id} = req.params
+    const photos = await Photo.find({userId: id}).sort([['createdAt', -1]]).exec()
 
     return res.status(200).json(photos)
 }
@@ -72,4 +80,5 @@ module.exports = {
     insertPhoto,
     deletePhoto,
     getAllPhotos,
+    getUserPhotos,
 }
