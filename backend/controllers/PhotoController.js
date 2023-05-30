@@ -75,10 +75,25 @@ const getUserPhotos = async(req, res) => {
     return res.status(200).json(photos)
 }
 
+//get photo by id
+const getPhotoById = async(req, res) =>  {
+    const {id} = req.params
+    const photo = await Photo.findById(id)
+
+    //check if photo exist
+    if(!photo){
+        res.status(404).json({errors: ["Foto nao encontrada"]})
+        return
+    }
+
+    res.status(200).json(photo)
+}
+
 
 module.exports = {
     insertPhoto,
     deletePhoto,
     getAllPhotos,
     getUserPhotos,
+    getPhotoById,
 }
